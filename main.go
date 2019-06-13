@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -21,5 +22,14 @@ func main() {
 
 	user.Init(r, db)
 	port := os.Getenv("PORT")
-	log.Fatal(http.ListenAndServe(port, r))
+	log.Fatal(http.ListenAndServe(getPort(), r))
+}
+
+func GetPort() string {
+	var port = os.Getenv("PORT")
+	if port == "" {
+		port = "4747"
+		fmt.Println("INFO: No PORT environment variable detected, defaulting to " + port)
+	}
+	return ":" + port
 }
