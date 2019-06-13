@@ -8,7 +8,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 	"github.com/jmoiron/sqlx"
-	"github.com/user_service/api/user"
+	"github.com/rafbullets/raf-movies-user-service/api/user"
 )
 
 func main() {
