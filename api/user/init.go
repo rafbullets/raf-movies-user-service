@@ -16,4 +16,6 @@ func Init(r *mux.Router, db *sqlx.DB) {
 	r.Methods("POST").Path("/api/users/refresh").HandlerFunc(Refresh(db))
 
 	r.Methods("PUT").Path("/api/users").HandlerFunc(Update(db))
+
+	r.Methods("DELETE").Path("/api/users/{id}").HandlerFunc(Delete(db))
 }
