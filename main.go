@@ -20,5 +20,5 @@ func main() {
 
 	user.Init(r, db)
 
-	log.Fatal(http.ListenAndServe(":8000", r))
+	log.Fatal(http.ListenAndServe(":80", r))
 }
