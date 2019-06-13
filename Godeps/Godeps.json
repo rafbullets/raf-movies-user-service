@@ -1,0 +1,32 @@
+{
+	"ImportPath": "user_service",
+	"GoVersion": "go1.11",
+	"GodepVersion": "v80",
+	"Deps": [
+		{
+			"ImportPath": "github.com/dgrijalva/jwt-go",
+			"Comment": "v3.2.0-9-g7cd734d",
+			"Rev": "7cd734deee981ccda9fd90491dd093dadf75162a"
+		},
+		{
+			"ImportPath": "github.com/go-sql-driver/mysql",
+			"Comment": "v1.4.0-30-g877a977",
+			"Rev": "877a9775f06853f611fb2d4e817d92479242d1cd"
+		},
+		{
+			"ImportPath": "github.com/gorilla/mux",
+			"Comment": "v1.7.2",
+			"Rev": "ed099d42384823742bba0bf9a72b53b55c9e2e38"
+		},
+		{
+			"ImportPath": "github.com/jmoiron/sqlx",
+			"Comment": "sqlx-v1.1-86-gf71d5ee",
+			"Rev": "f71d5ee01769df469d115332106ef504ded071dc"
+		},
+		{
+			"ImportPath": "github.com/jmoiron/sqlx/reflectx",
+			"Comment": "sqlx-v1.1-86-gf71d5ee",
+			"Rev": "f71d5ee01769df469d115332106ef504ded071dc"
+		}
+	]
+}
