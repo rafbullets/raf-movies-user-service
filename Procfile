@@ -1,1 +1,1 @@
-web: user_service
+web: ./bin/user_service
