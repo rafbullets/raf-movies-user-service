@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
@@ -19,6 +20,6 @@ func main() {
 	}
 
 	user.Init(r, db)
-
-	log.Fatal(http.ListenAndServe(":8080", r))
+	port := os.Getenv("PORT")
+	log.Fatal(http.ListenAndServe(port, r))
 }
