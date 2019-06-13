@@ -9,6 +9,12 @@
 			"revisionTime": "2019-05-30T17:48:54Z"
 		},
 		{
+			"checksumSHA1": "zGYOyUB58GVhLkrwhG1ut66SPec=",
+			"path": "github.com/go-sql-driver/mysql",
+			"revision": "877a9775f06853f611fb2d4e817d92479242d1cd",
+			"revisionTime": "2019-05-10T10:23:35Z"
+		},
+		{
 			"checksumSHA1": "l/v4eZed+UIMXXCClOuBrLOhRJg=",
 			"path": "github.com/gorilla/mux",
 			"revision": "ed099d42384823742bba0bf9a72b53b55c9e2e38",
