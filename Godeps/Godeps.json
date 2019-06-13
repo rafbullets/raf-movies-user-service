@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/rafbullets/raf-movies-user-service",
+	"ImportPath": "github.com/user_service",
 	"GoVersion": "go1.11",
 	"GodepVersion": "v80",
 	"Deps": [

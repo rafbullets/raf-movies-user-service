@@ -1,1 +1,1 @@
-web: github.com/user_service
+web: ./bin/user_service
