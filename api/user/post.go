@@ -2,7 +2,9 @@ package user
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -57,7 +59,7 @@ func Login(db *sqlx.DB) http.HandlerFunc {
 		expirationTime := time.Now().Add(3600 * time.Minute)
 
 		claims := &Claims{
-			Username: user.Username,
+			ID: user.ID,
 			StandardClaims: jwt.StandardClaims{
 				// In JWT, the expiry time is expressed as unix milliseconds
 				ExpiresAt: expirationTime.Unix(),
@@ -73,12 +75,7 @@ func Login(db *sqlx.DB) http.HandlerFunc {
 			return
 		}
 
-		http.SetCookie(w, &http.Cookie{
-			Name:    "token",
-			Value:   tokenString,
-			Expires: expirationTime,
-		})
-
+		w.Header().Add("Authorization", "Bearer "+tokenString)
 		json.NewEncoder(w).Encode(user)
 	}
 }
@@ -86,17 +83,17 @@ func Login(db *sqlx.DB) http.HandlerFunc {
 func Refresh(db *sqlx.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// (BEGIN) The code uptil this point is the same as the first part of the `Welcome` route
-		c, err := r.Cookie("token")
-		if err != nil {
-			if err == http.ErrNoCookie {
-				w.WriteHeader(http.StatusUnauthorized)
-				return
-			}
-			w.WriteHeader(http.StatusBadRequest)
+		c := r.Header.Get("Authorization")
+		if c == "" {
+			fmt.Println("EVO ME")
+
+			w.WriteHeader(http.StatusUnauthorized)
 			return
 		}
 
-		tknStr := c.Value
+		c = strings.Fields(c)[1]
+
+		tknStr := c
 		claims := &Claims{}
 		tkn, err := jwt.ParseWithClaims(tknStr, claims, func(token *jwt.Token) (interface{}, error) {
 			return JwtKey, nil
@@ -127,11 +124,6 @@ func Refresh(db *sqlx.DB) http.HandlerFunc {
 			return
 		}
 
-		// Set the new token as the users `token` cookie
-		http.SetCookie(w, &http.Cookie{
-			Name:    "token",
-			Value:   tokenString,
-			Expires: expirationTime,
-		})
+		w.Header().Add("Authorization", "Bearer "+tokenString)
 	}
 }
