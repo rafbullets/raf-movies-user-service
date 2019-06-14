@@ -111,9 +111,13 @@ func Login(db *sqlx.DB) http.HandlerFunc {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
-
+		type Response struct {
+			User  User   `json:"user"`
+			Token string `json:"token"`
+		}
+		res := Response{user, tokenString}
 		w.Header().Add("Authorization", "Bearer "+tokenString)
-		json.NewEncoder(w).Encode(user)
+		json.NewEncoder(w).Encode(res)
 	}
 }
 
