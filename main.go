@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/user_service/api/status"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 	"github.com/jmoiron/sqlx"
@@ -21,6 +23,7 @@ func main() {
 	}
 
 	user.Init(r, db)
+	status.Init(r, db)
 	log.Fatal(http.ListenAndServe(GetPort(), r))
 }
 

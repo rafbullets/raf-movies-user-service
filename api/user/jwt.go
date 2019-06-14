@@ -5,6 +5,7 @@ import "github.com/dgrijalva/jwt-go"
 var JwtKey = []byte("my_secret_key")
 
 type Claims struct {
-	ID int64 `json:"id"`
+	ID   int64  `json:"id"`
+	Role string `json:"role"`
 	jwt.StandardClaims
 }
